@@ -1,0 +1,55 @@
+{
+    "name": "appengine-hello-world",
+    "description": "Simple Hello World TypeScript sample for Google App Engine Standard Environment.",
+    "version": "0.0.1",
+    "license": "MIT",
+    "author": "flatfisher",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "scripts": {
+        "clean": "rimraf \"node/*\"",
+        "lint": "tslint --project tsconfig.json",
+        "tsc": "tsc",
+        "cp-package": "copyfiles app.yaml package.json node",
+        "build": "run-s clean lint tsc cp-package",
+        "deploy": "gcloud app deploy",
+        "start": "node app.js",
+        "system-test": "repo-tools test app",
+        "test": "npm run system-test",
+        "e2e-test": "repo-tools test deploy"
+    },
+    "dependencies": {
+        "dom": "0.0.3"
+    },
+    "devDependencies": {
+        "@google-cloud/nodejs-repo-tools": "^3.0.0",
+        "@types/chai": "^4.1.7",
+        "@types/chai-http": "^3.0.5",
+        "@types/express": "^4.16.0",
+        "@types/mocha": "^5.2.5",
+        "@types/moment": "^2.13.0",
+        "@types/node": "^10.12.12",
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.0",
+        "copyfiles": "^2.1.0",
+        "express": "^4.16.4",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^2.6.2",
+        "tslint": "^5.11.0",
+        "typescript": "^3.2.4"
+    },
+    "cloud-repo-tools": {
+        "test": {
+            "app": {
+                "msg": "Hello, world!"
+            }
+        },
+        "requiresKeyFile": true,
+        "requiresProjectId": true
+    }
+}
